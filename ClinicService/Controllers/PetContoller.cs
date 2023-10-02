@@ -55,7 +55,7 @@ namespace ClinicService.Controllers
             return Ok(_petRepository.GetAll());
         }
 
-        [HttpGet("get/{clientId}")]
+        [HttpGet("get/{petId}")]
         public IActionResult GetById([FromRoute] int petId)
         {
             return Ok(_petRepository.GetById(petId));
