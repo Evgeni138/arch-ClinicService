@@ -4,6 +4,7 @@ using ClinicService.Services;
 using ClinicService.Services.Impl;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ClinicService.Controllers
 {
@@ -18,7 +19,8 @@ namespace ClinicService.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult Create([FromBody] CreateClientRequest createRequest) 
+        [SwaggerOperation(OperationId = "ClientCreate")]
+        public ActionResult<int> Create([FromBody] CreateClientRequest createRequest) 
         {
             int res = _clientRepository.Create(new Client
             {
@@ -32,7 +34,8 @@ namespace ClinicService.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update([FromBody] UpdateClientRequest updateRequest)
+        [SwaggerOperation(OperationId = "ClientUpdate")]
+        public ActionResult<int> Update([FromBody] UpdateClientRequest updateRequest)
         {
             int res = _clientRepository.Update(new Client
             {
@@ -47,20 +50,25 @@ namespace ClinicService.Controllers
         }
 
         [HttpDelete("delete")]
-        public IActionResult Delete([FromQuery] int clientId)
+        [SwaggerOperation(OperationId = "ClientDelete")]
+
+
+        public ActionResult<int> Delete([FromQuery] int clientId)
         {
             int res = _clientRepository.Delete(clientId);
             return Ok(res);
         }
 
         [HttpGet("get-all")]
-        public IActionResult GetAll()
+        [SwaggerOperation(OperationId = "ClientGetAll")]
+        public ActionResult<List<Client>> GetAll()
         {
             return Ok(_clientRepository.GetAll());
         }
 
         [HttpGet("get/{clientId}")]
-        public IActionResult GetById([FromRoute] int clientId)
+        [SwaggerOperation(OperationId = "ClientGetById")]
+        public ActionResult<Client> GetById([FromRoute] int clientId)
         {
             return Ok(_clientRepository.GetById(clientId));
         }
