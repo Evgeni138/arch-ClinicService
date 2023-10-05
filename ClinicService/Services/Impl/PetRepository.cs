@@ -110,7 +110,7 @@ namespace ClinicService.Services.Impl
                         PetId = reader.GetInt32(0),
                         ClientId = reader.GetInt32(1),
                         Name = reader.GetString(2),
-                        Birthday = new DateTime(reader.GetInt64(5))
+                        Birthday = new DateTime(reader.GetInt64(3))
                     };
                     return pet;
                 }
