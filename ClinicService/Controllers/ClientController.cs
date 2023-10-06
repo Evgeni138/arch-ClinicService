@@ -51,6 +51,8 @@ namespace ClinicService.Controllers
 
         [HttpDelete("delete")]
         [SwaggerOperation(OperationId = "ClientDelete")]
+
+
         public ActionResult<int> Delete([FromQuery] int clientId)
         {
             int res = _clientRepository.Delete(clientId);
@@ -70,5 +72,10 @@ namespace ClinicService.Controllers
         {
             return Ok(_clientRepository.GetById(clientId));
         }
+
+        //public object Update(Client newClient)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
